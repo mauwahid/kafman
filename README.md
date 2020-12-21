@@ -1,5 +1,5 @@
 # Kafman
-Kafman is Simple HTTP API for Publishing Kafka message & Console log for kafka's topic consumer
+Kafman is a simple HTTP API for publishing Kafka message & console log for kafka's topic consumer
 
 # Prerequisites
 - Go 1.15
