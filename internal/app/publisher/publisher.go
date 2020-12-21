@@ -6,7 +6,7 @@ import (
 	"github.com/mauwahid/kafman/internal/infra/config"
 	"github.com/mauwahid/kafman/internal/infra/errs"
 	"github.com/mauwahid/kafman/internal/infra/queue/producer"
-	"github.com/mauwahid/kafman/internal/interfaces/dto"
+	"github.com/mauwahid/kafman/internal/presenter/dto"
 )
 
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
@@ -36,7 +36,7 @@ func (p Publisher) Publish(pubReq dto.PubRequest) (pubRes dto.PubResponse, err e
 	}
 
 	var key string
-	if key, err = p.pub.Publish(pubReq.Topic, string(data), p.queue); err != nil{
+	if key, err = p.pub.Publish(pubReq.Topic, string(data), p.queue); err != nil {
 		pubRes = errs.Error(data, err)
 		return
 	}

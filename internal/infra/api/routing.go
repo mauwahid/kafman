@@ -2,7 +2,7 @@ package api
 
 import (
 	"github.com/labstack/echo/v4"
-	"github.com/mauwahid/kafman/internal/interfaces/api"
+	"github.com/mauwahid/kafman/internal/presenter/api"
 	"net/http"
 )
 

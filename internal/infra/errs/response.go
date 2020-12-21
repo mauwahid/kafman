@@ -1,7 +1,7 @@
 package errs
 
 import (
-	"github.com/mauwahid/kafman/internal/interfaces/dto"
+	"github.com/mauwahid/kafman/internal/presenter/dto"
 	"net/http"
 	"strconv"
 )
@@ -22,7 +22,7 @@ func Success(key, data string) (pubRes dto.PubResponse) {
 	pubRes.Status = "00"
 	pubRes.Message = "success"
 	pubRes.Data = struct {
-		Key string `json:"key"`
+		Key     string `json:"key"`
 		Message string `json:"message"`
 	}{
 		Key:     key,

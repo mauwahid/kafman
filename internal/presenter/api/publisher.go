@@ -4,7 +4,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/mauwahid/kafman/internal/app/publisher"
 	"github.com/mauwahid/kafman/internal/infra/errs"
-	"github.com/mauwahid/kafman/internal/interfaces/dto"
+	"github.com/mauwahid/kafman/internal/presenter/dto"
 	"net/http"
 )
 
