@@ -79,7 +79,7 @@ func cobraRunner(cobraCmd *cobra.Command, args []string) {
 	case "publisher":
 		fmt.Println("run http only")
 		cmd.RunHttp()
-	case "subcriber":
+	case "subscriber":
 		fmt.Println("run subscriber only")
 		cmd.RunSubscriber()
 	default:
