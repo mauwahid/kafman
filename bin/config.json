@@ -1,0 +1,13 @@
+{
+    "app" : {
+        "port" : "3000"
+    },
+    "producer" : {
+        "brokers" : "kafka:9092"
+    },
+    "consumer" : {
+        "brokers" : "kafka:9092",
+        "topics" : "sb.callback",
+        "group" : "kafman"
+    }
+}
