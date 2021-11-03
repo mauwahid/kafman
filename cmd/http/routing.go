@@ -1,4 +1,4 @@
-package api
+package http
 
 import (
 	"github.com/labstack/echo/v4"
@@ -6,10 +6,9 @@ import (
 	"net/http"
 )
 
-func SetupApiRoute(e *echo.Echo) {
-
+func setupApiRoute(e *echo.Echo) {
 	pub := api.NewPublisherHandler()
-	e.POST("/kafman/v1/publish", pub.Publish)
+	e.POST("/kafman/v1/publish/:topic", pub.Publish)
 	e.Any("/kafman/ping", echoPing)
 }
 

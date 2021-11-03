@@ -1,4 +1,4 @@
-package cmd
+package queue
 
 import "github.com/mauwahid/kafman/internal/presenter/process"
 

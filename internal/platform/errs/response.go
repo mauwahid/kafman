@@ -1,9 +1,10 @@
 package errs
 
 import (
-	"github.com/mauwahid/kafman/internal/presenter/dto"
 	"net/http"
 	"strconv"
+
+	"github.com/mauwahid/kafman/internal/presenter/dto"
 )
 
 var RespBadRequest = dto.PubResponse{

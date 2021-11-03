@@ -2,12 +2,15 @@ package main
 
 import (
 	"fmt"
-	"github.com/mauwahid/kafman/cmd"
-	"github.com/mauwahid/kafman/internal/infra/config"
-	"github.com/spf13/cobra"
-	"github.com/spf13/viper"
 	"os"
 	"runtime"
+
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+
+	"github.com/mauwahid/kafman/cmd/http"
+	"github.com/mauwahid/kafman/cmd/queue"
+	"github.com/mauwahid/kafman/internal/platform/config"
 )
 
 const banner = `
@@ -56,7 +59,6 @@ func createViper(file string) (v *viper.Viper, err error) {
 
 	v = viper.New()
 	v.SetConfigFile(file)
-
 	if err = v.ReadInConfig(); err != nil {
 		return
 	}
@@ -68,8 +70,8 @@ func cobraRunner(cobraCmd *cobra.Command, args []string) {
 
 	if len(args) == 0 {
 		fmt.Println("run publisher and subscriber")
-		cmd.RunSubscriber()
-		cmd.RunHttp()
+		queue.RunSubscriber()
+		http.RunHttp()
 		return
 	}
 
@@ -78,14 +80,14 @@ func cobraRunner(cobraCmd *cobra.Command, args []string) {
 	switch arg {
 	case "publisher":
 		fmt.Println("run http only")
-		cmd.RunHttp()
+		http.RunHttp()
 	case "subscriber":
 		fmt.Println("run subscriber only")
-		cmd.RunSubscriber()
+		queue.RunSubscriber()
 	default:
 		fmt.Println("run publisher and subscriber")
-		cmd.RunSubscriber()
-		cmd.RunHttp()
+		queue.RunSubscriber()
+		http.RunHttp()
 	}
 
 }
