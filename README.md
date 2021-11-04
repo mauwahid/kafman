@@ -28,12 +28,8 @@ curl --location --request POST 'localhost:3000/kafman/v1/publish/mytopic' \
 curl --location --request POST 'localhost:3000/kafman/v1/publish/mytopic' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "topic": "yourtopic",
-    "message": {
-        "key": "is a key",
-        "value": "is a value",
-        "other": "what is this? :D"
-    }
+    "name" : "mauwahid",
+    "email" : "mau.wahid@gmail.com"
 }'
 ```
 
