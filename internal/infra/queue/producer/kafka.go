@@ -34,9 +34,9 @@ func New(brokers string) (*Producer, error) {
 	return &producer, nil
 }
 
-func (p *Producer) Send(topic, data string) (string, error) {
+func (p *Producer) Send(topic string, data []byte) (string, error) {
 	uuid := watermill.NewUUID()
-	msg := message.NewMessage(watermill.NewUUID(), []byte(data))
+	msg := message.NewMessage(watermill.NewUUID(), data)
 	if err := p.publisher.Publish(topic, msg); err != nil {
 		return uuid, err
 	}

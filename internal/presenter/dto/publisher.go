@@ -1,8 +1,8 @@
 package dto
 
 type PubRequest struct {
-	Topic   string      `json:"topic"`
-	Message interface{} `json:"message"`
+	Topic   string
+	Message []byte
 }
 
 type PubResponse struct {

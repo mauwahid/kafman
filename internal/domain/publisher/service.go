@@ -6,6 +6,6 @@ func NewPublisher() *Publisher {
 	return &Publisher{}
 }
 
-func (p *Publisher) Publish(topic, message string, q Queue) (string, error) {
+func (p *Publisher) Publish(topic string, message []byte, q Queue) (string, error) {
 	return q.Send(topic, message)
 }

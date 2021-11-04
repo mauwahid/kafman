@@ -32,7 +32,7 @@ func (p *PublisherHandler) Publish(c echo.Context) error {
 	}
 
 	pubReq.Topic = c.Param("topic")
-	pubReq.Message = buf.String()
+	pubReq.Message = buf.Bytes()
 
 	if !pubReq.Validate() {
 		return c.JSON(http.StatusBadRequest, errs.RespBadRequest)

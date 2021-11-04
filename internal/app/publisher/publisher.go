@@ -26,17 +26,10 @@ func New() *Publisher {
 }
 
 func (p *Publisher) Publish(pubReq dto.PubRequest) (pubRes dto.PubResponse, err error) {
-	var data []byte
-	if data, err = json.Marshal(pubReq.Message); err != nil {
-		pubRes = errs.Error(data, err)
-		return
-	}
-
 	var key string
-	if key, err = p.pub.Publish(pubReq.Topic, string(data), p.queue); err != nil {
-		pubRes = errs.Error(data, err)
+	if key, err = p.pub.Publish(pubReq.Topic, pubReq.Message, p.queue); err != nil {
+		pubRes = errs.Error(pubReq.Message, err)
 		return
 	}
-
-	return errs.Success(key, string(data)), nil
+	return errs.Success(key, pubReq.Message), nil
 }

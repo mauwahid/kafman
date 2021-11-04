@@ -9,7 +9,6 @@ import (
 	"github.com/mauwahid/kafman/internal/domain/subscriber"
 	"github.com/mauwahid/kafman/internal/infra/queue/consumer"
 	"github.com/mauwahid/kafman/internal/platform/config"
-
 )
 
 var json = jsoniter.ConfigCompatibleWithStandardLibrary
