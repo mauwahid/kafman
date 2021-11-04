@@ -2,11 +2,12 @@ package consumer
 
 import (
 	"context"
+	"strings"
+
 	"github.com/Shopify/sarama"
 	"github.com/ThreeDotsLabs/watermill"
 	"github.com/ThreeDotsLabs/watermill-kafka/v2/pkg/kafka"
 	"github.com/ThreeDotsLabs/watermill/message"
-	"strings"
 )
 
 type Consumer struct {
@@ -18,8 +19,8 @@ type Consumer struct {
 
 type Consume func(topic, key string, message []byte)
 
-func New(group, brokers string, consume Consume) Consumer {
-	return Consumer{
+func New(group, brokers string, consume Consume) *Consumer {
+	return &Consumer{
 		group:   group,
 		brokers: brokers,
 		consume: consume,
@@ -27,7 +28,6 @@ func New(group, brokers string, consume Consume) Consumer {
 }
 
 func (c *Consumer) Subscribe(topics []string) error {
-
 	saramaSubscriberConfig := kafka.DefaultSaramaSubscriberConfig()
 	// equivalent of auto.offset.reset: earliest
 	saramaSubscriberConfig.Consumer.Offsets.Initial = sarama.OffsetOldest
@@ -47,7 +47,6 @@ func (c *Consumer) Subscribe(topics []string) error {
 	}
 
 	c.subscriber = subscriber
-
 	for i := range topics {
 		messages, err := subscriber.Subscribe(context.Background(), topics[i])
 		if err != nil {
@@ -56,7 +55,6 @@ func (c *Consumer) Subscribe(topics []string) error {
 
 		go c.process(topics[i], messages)
 	}
-
 	return nil
 }
 

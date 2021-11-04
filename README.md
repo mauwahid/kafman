@@ -19,24 +19,17 @@ docker-compose up
 ```
 - Sample Request for Publishing message to kafka, you can set message with string or json object
 ```
-curl --location --request POST 'localhost:3000/kafman/v1/publish' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "topic" : "yourtopic",
-    "message" : "this is a message"
-}'
+curl --location --request POST 'localhost:3000/kafman/v1/publish/mytopic' \
+--header 'Content-Type: text/plain' \
+--data-raw 'ini topic mytopic'
 ```
 
 ```
-curl --location --request POST 'localhost:3000/kafman/v1/publish' \
+curl --location --request POST 'localhost:3000/kafman/v1/publish/mytopic' \
 --header 'Content-Type: application/json' \
 --data-raw '{
-    "topic": "yourtopic",
-    "message": {
-        "key": "is a key",
-        "value": "is a value",
-        "other": "what is this? :D"
-    }
+    "name" : "mauwahid",
+    "email" : "mau.wahid@gmail.com"
 }'
 ```
 

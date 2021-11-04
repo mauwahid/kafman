@@ -1,33 +1,32 @@
-package cmd
+package http
 
 import (
 	"context"
 	"fmt"
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
-	"github.com/mauwahid/kafman/internal/infra/api"
-	"github.com/mauwahid/kafman/internal/infra/config"
+
 	"net/http"
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+
+	"github.com/mauwahid/kafman/internal/platform/config"
 )
 
 func RunHttp() {
-
 	fmt.Println("==== Start Run HTPP Server ====")
 
 	e := echo.New()
-
 	e.Use(middleware.Recover())
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
-		AllowMethods: []string{http.MethodGet, http.MethodPut, http.MethodPost, http.MethodDelete, http.MethodOptions},
+		AllowMethods: []string{http.MethodPost, http.MethodOptions},
 	}))
 	e.HideBanner = true
 
-	api.SetupApiRoute(e)
-
+	setupApiRoute(e)
 	sPort := config.Get().GetString("app.port")
 	port := fmt.Sprintf(":%s", sPort)
 
